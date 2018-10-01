@@ -5,8 +5,8 @@ var router = express.Router();
 router.get('/add', function (req, res, next) {
   var authUrl = 'https://slack.com/oauth/authorize?' + 
     'scope=' + 'incoming-webhook' + 
-    '&client_id=' + process.env.CLIENT_ID +
-    '&redirect_uri=' + process.env.REDIRECT_URI;
+    '&client_id=' + process.env.SLACK_CLIENT_ID +
+    '&redirect_uri=' + process.env.SLACK_REDIRECT_URI;
   var button = {
     alt: "Add to Slack",
     height: "40",
@@ -25,9 +25,9 @@ router.get('/authorized', function (req, res, next) {
   var options = {
     uri: 'https://slack.com/api/oauth.access?code=' +
       req.query.code +
-      '&client_id=' + process.env.CLIENT_ID +
-      '&client_secret=' + process.env.CLIENT_SECRET +
-      '&redirect_uri=' + process.env.REDIRECT_URI,
+      '&client_id=' + process.env.SLACK_CLIENT_ID +
+      '&client_secret=' + process.env.SLACK_CLIENT_SECRET +
+      '&redirect_uri=' + process.env.SLACK_REDIRECT_URI,
     method: 'GET'
   };
 
@@ -35,7 +35,7 @@ router.get('/authorized', function (req, res, next) {
     var JSONresponse = JSON.parse(body);
     if (!JSONresponse.ok) {
       console.log(JSONresponse);
-      res.send("Error encountered: \n" + JSON.stringify(JSONresponse)).status(200).end()
+      res.send("Error encountered: \n" + JSON.stringify(JSONresponse)).status(200).end();
     } else {
       console.log(JSONresponse);
       res.send("Success!");
