@@ -1,1 +1,8 @@
+# Editor Configs
 .vscode
+
+# Database 
+data/
+
+# Node Specific
+node_modules/
