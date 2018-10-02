@@ -3,3 +3,6 @@
 
 # Database 
 data/
+
+# Node Specific
+node_modules/
