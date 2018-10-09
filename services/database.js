@@ -40,4 +40,4 @@ exports.db.saveSlackAuthorization = function (authResponse) {
             ]
         );
     });
-}
+};
